@@ -1,11 +1,11 @@
 import { APP_CONFIG } from '@/core/configs';
 import { Button, Input, Label, VokadashHead } from '@/core/libs';
 import { InputSecure, useAlert } from '@/features/_global';
-import { FormEventHandler, useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { Mail, Lock } from 'lucide-react'; 
 import axios from 'axios'; // Pastikan axios terinstall
+import { Lock, Mail } from 'lucide-react';
+import { FormEventHandler, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ export const LoginPage = () => {
         localStorage.setItem('token', token);
         alert.success('Login berhasil!');
         setTimeout(() => {
-          navigate('/perpus-tv', { replace: true });
+          navigate('/', { replace: true });
         }, 300);
       } else {
         alert.error('Gagal mendapatkan token dari server');

@@ -47,6 +47,18 @@ const TVLayer = () => {
     return (match && match[2].length === 11) ? match[2] : null;
   };
 
+  useEffect(() => {
+    // Ambil data dari localStorage
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const userProfile = localStorage.getItem('user_profile');
+
+    // Jika salah satu kosong/tidak ada, redirect ke login
+    if (!token || !user || !userProfile || user === 'null' || user === 'undefined') {
+      navigate('/auth/login');
+    }
+  }, [navigate]);
+
   const fetchSholatTimes = async () => {
     try {
       const res = await axios.get('https://api.aladhan.com/v1/timingsByCity', {
